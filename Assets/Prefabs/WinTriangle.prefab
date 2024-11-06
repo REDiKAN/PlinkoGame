@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4131937602990320101}
   - component: {fileID: 7663643816372959732}
+  - component: {fileID: 8152745401250611355}
   - component: {fileID: 427784655389639865}
   m_Layer: 0
   m_Name: WinTriangle
@@ -89,6 +90,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8152745401250611355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3701874637113839797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 929dc20c9c27df24fbce925c24ab0fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &427784655389639865
 CanvasRenderer:
   m_ObjectHideFlags: 0
