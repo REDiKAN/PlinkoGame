@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Plugins/UniRx/Examples/UniRx.Examples.asmdef.meta
 guid: 71799519d12379b49b6b53aea974bea5
 AssemblyDefinitionImporter:
+========
+guid: b5b01103433ff1b41ab593a1851bdd86
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> Serialization:Assets/Scripts/Serialization.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
