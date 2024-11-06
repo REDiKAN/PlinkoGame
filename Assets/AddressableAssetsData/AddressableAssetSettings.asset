@@ -45,6 +45,7 @@ MonoBehaviour:
   m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
   m_GroupAssets:
   - {fileID: 11400000, guid: 827c2f53861bcd2439155572031c7d33, type: 2}
+  - {fileID: 11400000, guid: 69ce61776af0f924ba8036b8a57a262a, type: 2}
   - {fileID: 11400000, guid: cf47fd99df43da04ea6550e7152a80da, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
@@ -87,6 +88,7 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
+    - Locale
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 518fa4c0ef1f68649842948aabc404f7, type: 2}
