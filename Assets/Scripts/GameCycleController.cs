@@ -12,6 +12,6 @@ public class GameCycleController : MonoBehaviour
 
     public void OnReward(int reward)
     {
-        Coins = reward;
+        Coins += reward;
     }
 }
