@@ -1,9 +1,15 @@
+using System;
 using UnityEngine;
 
 public class GameCycleController : MonoBehaviour
 {
     public int Balls;
     public int Coins;
+
+    public void Init(int balls)
+    {
+        Balls = balls;
+    }
 
     private void Start()
     {
@@ -13,5 +19,10 @@ public class GameCycleController : MonoBehaviour
     public void OnReward(int reward)
     {
         Coins += reward;
+    }
+
+    public void OnLoose()
+    {
+        throw new NotImplementedException();
     }
 }
