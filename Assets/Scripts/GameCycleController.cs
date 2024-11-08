@@ -21,6 +21,7 @@ public class GameCycleController : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
     }
+
     public void UpdateGameState()
     {
         if (Balls == 0 && !CurrentBallInGame)
@@ -30,16 +31,19 @@ public class GameCycleController : MonoBehaviour
         }
         throw new NotImplementedException();
     }
+
     public void OnLooseHandler()
     {
-        Debug.Log("Player is looser.");
+        Debug.Log("Player looser.");
         throw new NotImplementedException();
     }
 
     public void OnWinHadler()
     {
+        Debug.Log("Player Won.");
         throw new NotImplementedException();
     }
+
     public void RewardPlayeWithCoins(int coins)
     {
         if (TryAddCoins(coins))
