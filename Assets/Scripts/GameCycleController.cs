@@ -11,6 +11,7 @@ public class GameCycleController : MonoBehaviour
 
 
     public event Action<int> OnPlayerRewardWithCoins;
+    public event Action<int> OnPlayerLooseCoins;
 
     public void Init(int balls)
     {
