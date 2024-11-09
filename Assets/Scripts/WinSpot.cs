@@ -14,6 +14,5 @@ public class WinSpot : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == PLAYER_TAG) OnPlayerCollision?.Invoke(RewardCoins);
-
     }
 }
