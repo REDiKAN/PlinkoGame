@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class WinSpot : MonoBehaviour
+public class LosingSpot : MonoBehaviour
 {
     private const string PLAYER_TAG = "Player";
 
-    public int RewardCoins = 0;
+    public int Coast;
 
     public UnityEvent<int> OnPlayerCollision;
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == PLAYER_TAG) OnPlayerCollision.Invoke(RewardCoins);
+        if (collision.gameObject.tag == PLAYER_TAG) OnPlayerCollision?.Invoke(Coast);
     }
 }
