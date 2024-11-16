@@ -85,11 +85,6 @@ public class GameplayUIView : MonoBehaviour
 
     #region ButtonHandlers
 
-    public void SetCoinsButton_OnClick()
-    {
-        SetCoinsCommand.Execute(0);
-    }
-
     public void OpenMenuButton_OnClick()
     {
         throw new NotImplementedException();
