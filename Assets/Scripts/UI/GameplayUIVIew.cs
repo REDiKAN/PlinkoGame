@@ -10,6 +10,8 @@ using System;
 
 public class GameplayUIView : MonoBehaviour
 {
+    [SerializeField] private GameCycleController _modelContext;
+
     [SerializeField] private TextMeshProUGUI numberBalls_text;
 
     [SerializeField] private TextMeshProUGUI CoinsTMP;
@@ -18,8 +20,8 @@ public class GameplayUIView : MonoBehaviour
 
     #region Reactive Property
 
-    public ReactiveProperty<int> Coins;
-    public ReactiveProperty<int> Balls;
+    public ReactiveProperty<int> CoinsProperty;
+    public ReactiveProperty<int> BallsProperty;
 
     #endregion
 
@@ -28,13 +30,13 @@ public class GameplayUIView : MonoBehaviour
     public ReactiveCommand<int> SetCoinsCommand = new ReactiveCommand<int>();
     public void OnSetCoinCommand(int newCoins)
     {
-        Coins.Value = newCoins;
+        CoinsProperty.Value = newCoins;
     }
 
     public ReactiveCommand<int> SetBallsCommand = new ReactiveCommand<int>();
     public void OnSetBallsCommand(int newBalls)
     {
-        Balls.Value = newBalls;
+        BallsProperty.Value = newBalls;
     }
 
     #endregion
@@ -47,7 +49,7 @@ public class GameplayUIView : MonoBehaviour
 
     private void ReactivPropertyInitialize(CompositeDisposable disposables)
     {
-        Coins.Subscribe(OnCoinsChanged).AddTo(_disposables);
+        CoinsProperty.Subscribe(OnCoinsChanged).AddTo(_disposables);
     }
 
     public void OnCoinsChanged(int newCoins)
@@ -58,6 +60,27 @@ public class GameplayUIView : MonoBehaviour
     public void OnBallcsChangesd(int newBalls)
     {
         throw new NotImplementedException();
+    }
+
+    private void _modelContext_OnBallsChenged(int obj)
+    {
+        BallsProperty.Value = obj;
+    }
+
+    private void _modelContext_OnCoinsChanged(int obj)
+    {
+        CoinsProperty.Value = obj;
+    }
+    private void SubscribeOnModel()
+    {
+        _modelContext.OnBallsChenged += _modelContext_OnBallsChenged;
+        _modelContext.OnCoinsChanged += _modelContext_OnCoinsChanged;
+    }
+
+    private void UnsubscriveOnModel()
+    {
+        _modelContext.OnBallsChenged -= _modelContext_OnBallsChenged;
+        _modelContext.OnCoinsChanged -= _modelContext_OnCoinsChanged;
     }
 
     #region ButtonHandlers
@@ -81,6 +104,16 @@ public class GameplayUIView : MonoBehaviour
     {
         CommandsInitialize(_disposables);
         ReactivPropertyInitialize(_disposables);
+    }
+
+    private void OnEnable()
+    {
+        SubscribeOnModel();
+    }
+
+    private void OnDisable()
+    {
+        UnsubscriveOnModel();
     }
 
     private void OnDestroy()

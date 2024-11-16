@@ -844,6 +844,10 @@ PrefabInstance:
       propertyPath: Coins.value
       value: 192593
       objectReference: {fileID: 0}
+    - target: {fileID: 5292189151456918475, guid: 79d6c6de96e6bfb4eb65ed75cc5ad99c, type: 3}
+      propertyPath: ModelContext
+      value: 
+      objectReference: {fileID: 1615181458}
     - target: {fileID: 7817064023329155415, guid: 79d6c6de96e6bfb4eb65ed75cc5ad99c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2100,8 +2104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b858f0d04474947ac6f9a62e88e27a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Balls: 0
-  Coins: 0
+  _balls: 0
+  _coins: 0
   CurrentBallInGame: 0
 --- !u!4 &1615181459
 Transform:
