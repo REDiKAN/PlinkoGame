@@ -30,6 +30,6 @@ public class VerticalMoveController : MonoBehaviour
 
     private void OnDestroy()
     {
-        _disposable.Dispose();
+        _disposable.Describe();
     }
 }
