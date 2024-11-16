@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class GameCycleController : MonoBehaviour
 {
+    private int Balls { get => _balls; set => SetBalls(value); }
+    private int Coins { get => _coins; set => SetCoins(value); }
 
-    public int Balls;
-    public int Coins;
+    public int _balls;
+    public int _coins;
 
     public bool CurrentBallInGame = false;
 
@@ -13,9 +15,12 @@ public class GameCycleController : MonoBehaviour
     public event Action<int> OnPlayerRewardWithCoins;
     public event Action<int> OnPlayerLooseCoins;
 
+    public event Action<int> OnBallsChenged;
+    public event Action<int> OnCoinsChanged;
+
     public void Init(int balls)
     {
-        Balls = balls;
+        _balls = balls;
     }
 
     private void Start()
@@ -25,7 +30,7 @@ public class GameCycleController : MonoBehaviour
 
     public void UpdateGameState()
     {
-        if (Balls == 0 && !CurrentBallInGame)
+        if (_balls == 0 && !CurrentBallInGame)
         {
             OnLooseHandler();
             return;
@@ -57,7 +62,7 @@ public class GameCycleController : MonoBehaviour
     {
         if (CheckPossibleSubtractFromCoins(coins))
         {
-            int newCoins = Coins - coins;
+            int newCoins = _coins - coins;
             SetCoins(newCoins);
             return;
         }
@@ -66,9 +71,12 @@ public class GameCycleController : MonoBehaviour
 
     public void SetCoins(int coins)
     {
+        if (coins == _coins) return;
+
         if (CheckValidCoins(coins))
         {
-            Coins = coins;
+            _coins = coins;
+            OnCoinsChanged?.Invoke(coins);
             return;
         }
 
@@ -79,20 +87,15 @@ public class GameCycleController : MonoBehaviour
     {
         if (!CheckValidCoins(coins)) return false;
 
-        int newCoins = Coins + coins;
+        int newCoins = _coins + coins;
         SetCoins(newCoins);
 
         return true;
     }
 
-    public bool CheckBallsIsEmpty()
-    {
-        return Balls == 0;
-    }
-
     public bool CheckPossibleSubtractFromCoins(int coins)
     {
-        return Coins >= coins;
+        return _coins >= coins;
     }
 
     public bool CheckValidCoins(int coins)
@@ -100,5 +103,22 @@ public class GameCycleController : MonoBehaviour
         if (coins < 0) return false;
 
         return true;
+    }
+
+    private void SetBalls(int newBalls)
+    {
+        if(Balls == _balls) return;
+
+        if (newBalls >= 0)
+        {
+            _balls = newBalls;
+            OnBallsChenged?.Invoke(newBalls);
+            return;
+        }
+    }
+
+    public bool CheckBallsIsEmpty()
+    {
+        return _balls == 0;
     }
 }
