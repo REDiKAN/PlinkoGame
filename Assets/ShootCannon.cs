@@ -8,7 +8,10 @@ public class ShootCannon : MonoBehaviour
 {
     [SerializeField] private GameObject Bullet;
     [SerializeField] private GameObject Crosshair;
-    private bool CanShoot = true;
+                     private bool CanShoot = true;
+                     private CompositeDisposable _disposablesAddJump = new CompositeDisposable();
+                     private CompositeDisposable _disposables = new CompositeDisposable();
+
 
     private void Start()
     {
@@ -26,6 +29,11 @@ public class ShootCannon : MonoBehaviour
                 {
                     CanShoot = true;
                 });
-            });
+            }).AddTo(_disposables);
+    }
+
+    private void OnDestroy()
+    {
+        _disposables.Dispose();
     }
 }
