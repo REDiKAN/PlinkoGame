@@ -225,5 +225,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winSpots: {fileID: 0}
   rewardCoins_txt: {fileID: 8192040131577527121}
-  additionalDistance: 4
-  centerDistance: {x: 41, y: 65}
+  additionalDistance: 0
+  centerDistance: {x: 0, y: 0}
