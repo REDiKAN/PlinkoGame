@@ -11,7 +11,7 @@ public class RendererSelect : MonoBehaviour
     [SerializeField] private TMP_Text rewardCoins_txt;
 
     [Header("Vidual Rect Distance")]
-    [SerializeField] private float additionalDistance = 5f;
+    [SerializeField] private float additionalDistance = 0f;
     [SerializeField] private Vector2 centerDistance = Vector2.zero;
 
     public void RenderInterfase(WinSpot _selectObj)
@@ -23,7 +23,7 @@ public class RendererSelect : MonoBehaviour
         Rect vidualRect = RendererBoundsinScreenSpace(winSpots.gameObject.GetComponentInChildren<Renderer>());
         RectTransform rt = GetComponent<RectTransform>();
 
-        rt.position = new Vector2(vidualRect.xMin + centerDistance.x, vidualRect.yMin + centerDistance.y);
+        rt.position = new Vector2(vidualRect.xMin, vidualRect.yMin);
         rt.sizeDelta = new Vector2(vidualRect.width + additionalDistance, vidualRect.height + additionalDistance);
     }
 
@@ -69,8 +69,4 @@ public class RendererSelect : MonoBehaviour
 
         return Rect.MinMaxRect(min_x, min_y, max_x, max_y);
     }
-}
-
-internal class TMP_Pro
-{
 }
