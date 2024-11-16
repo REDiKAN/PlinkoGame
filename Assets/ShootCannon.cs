@@ -25,10 +25,6 @@ public class ShootCannon : MonoBehaviour
                 var rot = Mathf.Atan2(dir.y, dir.x);
                 gmObject.transform.rotation = Quaternion.EulerRotation(new Vector3(0, 0, rot * Mathf.Deg2Rad));
                 CanShoot = false;
-                Observable.EveryGameObjectUpdate().
-                Where(_ => Input.GetKeyDown(KeyCode.M)).Subscribe(_ => {
-                    gmObject.GetComponent<Rigidbody2D>().AddForce(dir * 10, ForceMode2D.Impulse);
-                }).AddTo(gmObject);
                 Observable.Timer(System.TimeSpan.FromSeconds(1)).Subscribe(_ =>
                 {
                     CanShoot = true;
@@ -39,6 +35,5 @@ public class ShootCannon : MonoBehaviour
     private void OnDestroy()
     {
         _disposables.Dispose();
-        _disposablesAddJump.Dispose();
     }
 }
