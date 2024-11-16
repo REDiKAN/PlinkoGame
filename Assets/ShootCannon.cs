@@ -7,17 +7,18 @@ using UnityEngine;
 
 public class ShootCannon : MonoBehaviour
 {
-    [SerializeField] private GameObject Bullet;
-    [SerializeField] private GameObject Crosshair;
+    [SerializeField] private GameObject _bullet;
+    [SerializeField] private GameObject _crosshair;
                      private bool CanShoot = true;
                      private CompositeDisposable _disposablesAddJump = new CompositeDisposable();
                      private CompositeDisposable _disposables = new CompositeDisposable();
+    [SerializeField] private GameCycleController _gmc;
 
 
     private void Start()
     {
         Observable.EveryGameObjectUpdate()
-            .Where(_ => Input.GetKeyDown(KeyCode.P) && CanShoot && !_controller.CheckBallsIsEmpty())
+            .Where(_ => Input.GetKeyDown(KeyCode.P) && CanShoot && !_gmc.CheckBallsIsEmpty())
             .Subscribe(_ => {
                 GameObject gmObject = Instantiate(_bullet);
                 gmObject.transform.position = _crosshair.transform.position;
@@ -26,7 +27,7 @@ public class ShootCannon : MonoBehaviour
                 var rot = Mathf.Atan2(dir.y, dir.x);
                 gmObject.transform.rotation = Quaternion.EulerRotation(new Vector3(0, 0, rot * Mathf.Deg2Rad));
                 CanShoot = false;
-                _controller.Balls--;
+                _gmc._balls--;
                 
                 Observable.Timer(System.TimeSpan.FromSeconds(1)).Subscribe(_ =>
                 {
