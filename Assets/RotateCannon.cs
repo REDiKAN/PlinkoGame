@@ -29,6 +29,6 @@ public class RotateCannon : MonoBehaviour
 
     private void OnDestroy()
     {
-        _disposable.Describe();
+        _disposable.Dispose();
     }
 }
