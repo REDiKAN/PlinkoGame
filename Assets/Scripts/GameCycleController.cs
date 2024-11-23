@@ -2,10 +2,17 @@ using System;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameCycleController : MonoBehaviour
 {
     [SerializeField] private int _numberLevel = 1;
+    [SerializeField] private GameObject LevelCompleteUI;
+    [SerializeField] private Button _btReloadLevel;
+    [SerializeField] private Button _btToMenu;
+    [SerializeField] private Button _btNextLevel;
+
+                     private CompositeDisposable buttonDisposable = new CompositeDisposable();
 
     public int Balls { get => _balls; set => SetBalls(value); }
     public int Coins { get => _coins; set => SetCoins(value); }
@@ -33,8 +40,13 @@ public class GameCycleController : MonoBehaviour
     }
 
     public void LostLastBall() {
+        LevelCompleteUI.SetActive(true);
+        _btNextLevel.OnClickAsObservable().Subscribe((_) => { });
+        _btReloadLevel.OnClickAsObservable().Subscribe((_) => { });
+        _btToMenu.OnClickAsObservable().Subscribe((_) => { });
         if (_coins >= _needCountCoin) OnWin.Execute(_numberLevel);
         else OnLose.Execute(_numberLevel);
+
     }
 
 

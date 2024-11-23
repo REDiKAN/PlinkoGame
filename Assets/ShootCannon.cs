@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -39,7 +40,7 @@ public class ShootCannon : MonoBehaviour
                 {
                     CanShoot = true;
                 });
-
+                gmObject.OnBecameInvisibleAsObservable().Subscribe(_ => Destroy(gmObject));
                 gmObject.OnDestroyAsObservable().Subscribe(_ => {
                     CountInGameBalls.Value--;
                 });
