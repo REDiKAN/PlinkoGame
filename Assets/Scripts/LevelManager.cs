@@ -75,7 +75,7 @@ public class LevelManager : MonoBehaviour
     {
         if (LevelIsUnlock(nextLevelId))
         {
-            SceneManager.LoadScene(nextLevelId);
+            SceneManager.LoadScene(_levelsToSceneId[nextLevelId]);
         }
     }
 
