@@ -32,11 +32,6 @@ public class GameCycleController : MonoBehaviour
         _balls = balls;
     }
 
-    private void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-
     public void LostLastBall() {
         if (_coins >= _needCountCoin) OnWin.Execute(_numberLevel);
         else OnLose.Execute(_numberLevel);
