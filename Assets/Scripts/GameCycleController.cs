@@ -1,13 +1,19 @@
 using System;
+using TMPro;
+using UniRx;
 using UnityEngine;
 
 public class GameCycleController : MonoBehaviour
 {
+    [SerializeField] private int _numberLevel = 1;
+
     public int Balls { get => _balls; set => SetBalls(value); }
     public int Coins { get => _coins; set => SetCoins(value); }
+    
 
-    private int _balls=15;
-    private int _coins=0;
+    private int _balls = 15;
+    private int _coins = 0;
+    private int _needCountCoin = 1000;
 
     public bool CurrentBallInGame = false;
 
@@ -18,6 +24,9 @@ public class GameCycleController : MonoBehaviour
     public event Action<int> OnBallsChenged;
     public event Action<int> OnCoinsChanged;
 
+    public ReactiveCommand<int> OnWin = new ReactiveCommand<int>();
+    public ReactiveCommand<int> OnLose = new ReactiveCommand<int>();
+
     public void Init(int balls)
     {
         _balls = balls;
@@ -27,6 +36,12 @@ public class GameCycleController : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
     }
+
+    public void LostLastBall() {
+        if (_coins >= _needCountCoin) OnWin.Execute(_numberLevel);
+        else OnLose.Execute(_numberLevel);
+    }
+
 
     public void UpdateGameState()
     {
