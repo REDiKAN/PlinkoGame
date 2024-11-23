@@ -6,8 +6,8 @@ public class GameCycleController : MonoBehaviour
     public int Balls { get => _balls; set => SetBalls(value); }
     public int Coins { get => _coins; set => SetCoins(value); }
 
-    private int _balls;
-    private int _coins;
+    private int _balls=15;
+    private int _coins=0;
 
     public bool CurrentBallInGame = false;
 
@@ -107,7 +107,7 @@ public class GameCycleController : MonoBehaviour
 
     private void SetBalls(int newBalls)
     {
-        if(Balls == _balls) return;
+        if(Balls == newBalls) return;
 
         if (newBalls >= 0)
         {
