@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class GameCycleController : MonoBehaviour
 {
-    private int Balls { get => _balls; set => SetBalls(value); }
-    private int Coins { get => _coins; set => SetCoins(value); }
+    public int Balls { get => _balls; set => SetBalls(value); }
+    public int Coins { get => _coins; set => SetCoins(value); }
 
-    public int _balls;
-    public int _coins;
+    private int _balls;
+    private int _coins;
 
     public bool CurrentBallInGame = false;
 
