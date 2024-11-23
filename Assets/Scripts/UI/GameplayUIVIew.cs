@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UniRx;
 using Assets.Scripts.Utilits;
 using System;
+using System.Linq;
 
 public class GameplayUIView : MonoBehaviour
 {
@@ -50,6 +51,7 @@ public class GameplayUIView : MonoBehaviour
     private void ReactivPropertyInitialize(CompositeDisposable disposables)
     {
         CoinsProperty.Subscribe(OnCoinsChanged).AddTo(_disposables);
+        BallsProperty.Subscribe(OnBallcsChangesd).AddTo(_disposables);
     }
 
     public void OnCoinsChanged(int newCoins)
@@ -59,7 +61,7 @@ public class GameplayUIView : MonoBehaviour
 
     public void OnBallcsChangesd(int newBalls)
     {
-        throw new NotImplementedException();
+        StartCoroutine(TextCounterAnimation.CountText(int.Parse(numberBalls_text.text.Split(':').LastOrDefault()), newBalls, 60, 0.5f, numberBalls_text));
     }
 
     private void _modelContext_OnBallsChenged(int obj)
